@@ -17,7 +17,8 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(3);
 const app = express();
 
 // Задание подключения к базе данных по умолчанию
-const mongoDB = 'mongodb://localhost:27017/my_database';
+const devDbUrl = 'mongodb://localhost:27017/my_database'
+const mongoDB = process.env.MONGODB_URI || devDbUrl;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 // Предоставление mongoos'у возможности использовать глобальную библиотеку промисов
 mongoose.Promise = global.Promise;

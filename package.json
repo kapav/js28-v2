@@ -1,6 +1,9 @@
 {
   "name": "js28-v2",
   "version": "0.0.0",
+  "engines": {
+    "node": "12.16.1"
+  },
   "private": true,
   "scripts": {
     "start": "node --experimental-modules ./bin/www.mjs",

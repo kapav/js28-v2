@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1 #{title}: #{book.title}
+  p #[strong Краткое содержание:] #{book.summary}
+
+  if bookBookinstances.length
+    p #[strong Следующие экземпляры книги должны быть удалены перед удалением данной книги.]
+    div(style='margin-left:20px;margin-top:20px')
+      h4 Экземпляры книги
+      dl
+        each bookinstance in bookBookinstances
+          dt
+            a(href=bookinstance.url) #{bookinstance.imprint}#
+          dd
+            if bookinstance.status === 'Доступен'
+              span.text-success #{bookinstance.status}
+            else if bookinstance.status === 'Обслуживание'
+              span.text-danger #{bookinstance.status}
+            else
+              span.text-warning #{bookinstance.status}
+            if bookinstance.status !== 'Доступен'
+              span #{' '} #[strong до:] #{bookinstance.dueBackFormatted}
+  else
+    p Действительно ли вы хотите удалить данную книгу?
+    form(method='POST' action='')
+      div.form-group
+        input#bookid.form-control(type='hidden', name='bookid', required='true', value=book._id)
+      button.btn.btn-primary(type='submit') Удалить

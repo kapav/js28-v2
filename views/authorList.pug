@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each author in authorList
+      li
+        a(href=author.url) #{author.name}
+        | #{' '}(#{author.lifeSpan})
+    else
+      li Авторы отсутствуют.

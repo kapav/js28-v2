@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 #{title}: #{bookinstance._id}
+  p #[strong Название:] #{bookinstance.book.title}
+
+  p Действительно ли вы хотите удалить данный экземпляр книги?
+  form(method='POST' action='')
+    div.form-group
+      input#bookinstanceid.form-control(type='hidden', name='bookinstanceid', required='true', value=bookinstance._id)
+    button.btn.btn-primary(type='submit') Удалить

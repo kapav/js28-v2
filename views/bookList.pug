@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+
+  if (bookList)
+    ul
+      each book in bookList
+        li
+          if (book.title)
+            a(href=book.url) #{book.title}
+            if (book.author && book.author.name)
+              span #{' '}(#{book.author.name})
+            else
+              span #{' '}(Имя автора не указано)
+          else
+            span Название книги не указано.
+      else
+        li Книги отсутствуют.
+  else
+    p Список книг отсутствует.

@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='book') Книга:
+      select#book.form-control(type='select' placeholder='Выбрать книгу' name='book' required='true')
+        - bookList.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;})
+        for book in bookList
+          if bookinstance
+            option(value=book._id selected=(bookinstance.book.toString() === book._id.toString() ? 'selected' : false)) #{book.title}
+          else
+            option(value=book._id) #{book.title}
+
+    div.form-group
+      label(for='imprint') Выходные данные:
+      input#imprint.form-control(type='text' placeholder='Дата публикации и информация об издателе' name='imprint' required='true' value=(bookinstance === undefined ? '' : bookinstance.imprint))
+    div.form-group
+      label(for='dueBack') Дата, с которой экземпляр книги доступен:
+      input#dueBack.form-control(type='date' name='dueBack' value=(bookinstance === undefined ? '' : (new Date(bookinstance.dueBack)).toISOString().substr(0, 10)))
+
+    div.form-group
+      label(for='status') Состояние:
+      select#status.form-control(type='select' placeholder='Выбрать состояние' name='status' required='true')
+        option(value='Обслуживание') Обслуживание
+        option(value='Доступен') Доступен
+        option(value='Одолжен') Одолжен
+        option(value='Забронирован') Забронирован
+
+    button.btn.btn-primary(type='submit') Отправить
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

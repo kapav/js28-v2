@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Добро пожаловать в #[em местную библиотеку] - написанный с использованием самых базовых возможностей минифреймворка бекенда Express.js сайт и используемый как учебный пример в «Сети разработчиков Мозиллы».
+
+  h1 Динамическое содержимое
+
+  if error
+    p Ошибка при получении динамического содержимого.
+  else
+    p В библиотеке содержатся элементы различных наименований в следующем количестве:
+
+    ul
+      li #[strong Книги:] !{data.bookCount}
+      li #[strong Экземпляры:] !{data.bookinstanceCount}
+      li #[strong Экземпляров доступно:] !{data.bookinstanceAvailableCount}
+      li #[strong Авторы:] !{data.authorCount}
+      li #[strong Жанры:] !{data.genreCount}

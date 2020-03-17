@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  if (bookinstanceList)
+    ul
+      each val in bookinstanceList
+        li
+          a(href=val.url) #{val.book.title} : #{val.imprint} -
+          if (val.status==='Доступен')
+            span.text-success #{' ' + val.status}
+          else if (val.status==='Обслуживание')
+            span.text-danger #{' ' + val.status}
+          else
+            span.text-warning #{' ' + val.status}
+          if val.status!=='Доступен'
+            span #{' '}(До: #{val.dueBackFormatted}) 
+      else
+        li Экземпляры книг отсутствуют.
+  else
+    p Список экземпляров книг отсутствует.

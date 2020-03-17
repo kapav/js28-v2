@@ -1,0 +1,23 @@
+extend layout
+
+block content
+  h1 Идентификатор: #{bookinstance._id}
+
+  p #[strong Название:] #{' '}
+    a(href=bookinstance.book.url) #{bookinstance.book.title}
+  p #[strong Выходные данные:] #{bookinstance.imprint}
+  p #[strong Состояние:] #{' '}
+    if bookinstance.status === 'Доступен'
+      span.text-success #{bookinstance.status}
+    else if bookinstance.status === 'Обслуживание'
+      span.text-danger #{bookinstance.status}
+    else
+      span.text-warning #{bookinstance.status}
+  if bookinstance.status !== 'Доступен'
+    p #[strong Срок возврата:] #{bookinstance.dueBackFormatted}
+
+  hr
+  p
+    a(href=bookinstance.url + '/delete') Удалить экземпляр книги
+  p
+    a(href=bookinstance.url + '/update') Обновить экземпляр книги

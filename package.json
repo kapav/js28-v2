@@ -1,0 +1,29 @@
+{
+  "name": "js28-v2",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node --experimental-modules ./bin/www.mjs",
+    "devstart": "nodemon --experimental-modules ./bin/www.mjs",
+    "debug": "set DEBUG=js28-v2:* & npm start",
+    "devdebug": "set DEBUG=js28-v2:* & npm run devstart"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "debug": "~2.6.9",
+    "express": "~4.17.1",
+    "express-validator": "^6.4.0",
+    "helmet": "^3.21.3",
+    "http-errors": "~1.7.3",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.5",
+    "morgan": "~1.9.1",
+    "pug": "^2.0.4",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

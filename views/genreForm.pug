@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Жанр:
+      input#name.form-control(type='text', placeholder='Фэнтези, поэзия и т. п.' name='name' value=(undefined === genre ? '' : genre.name), required='true')
+    button.btn.btn-primary(type='submit') Отправить
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg

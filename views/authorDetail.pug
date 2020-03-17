@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Автор: #{author.name}
+  p #{author.lifeSpan}
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Книги
+    dl
+      each book in authorBooks
+        dt
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
+      else
+        p Нет книг данного автора.
+
+  hr
+  p
+    a(href=author.url + '/delete') Удалить автора
+  p
+    a(href=author.url + '/update') Обновить автора

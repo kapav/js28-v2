@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1 Название: #{book.title}
+
+  p #[strong Автор:] #{' '}
+    a(href=book.author.url) #{book.author.name}
+  p #[strong Краткое содержание:] #{book.summary}
+  p #[strong ISBN:] #{book.isbn}
+  p #[strong Жанр:] #{' '}
+    each val, index in book.genre
+      a(href=val.url) #{val.name}
+      if index < book.genre.length - 1
+        |,#{' '}
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Экземпляры книги
+
+    each val in bookinstances
+      hr
+      if val.status === 'Доступен'
+        p.text-success #{val.status}
+      else if val.status === 'Обслуживание'
+        p.text-danger #{val.status}
+      else
+        p.text-warning #{val.status}
+      p #[strong Выходные данные:] #{val.imprint}
+      if val.status !== 'Доступен'
+        p #[strong Срок возврата:] #{val.dueBackFormatted}
+      p #[strong Идентификатор:] #{' '}
+        a(href=val.url) #{val._id}
+    else
+      p Отсутствуют экземпляры данной книги в библиотеке.
+
+  hr
+  p
+    a(href=book.url + '/delete') Удалить книгу
+  p
+    a(href=book.url + '/update') Обновить книгу

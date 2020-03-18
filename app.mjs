@@ -1,6 +1,7 @@
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
+import {fileURLToPath} from 'url'
 import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -13,7 +14,7 @@ import catalogRouter from './routes/catalog.mjs' // Импорт маршрут�
 import compression from 'compression'
 import helmet from 'helmet'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(3);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 // Задание подключения к базе данных по умолчанию

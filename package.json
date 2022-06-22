@@ -12,7 +12,7 @@
     "devdebug": "set DEBUG=js28-v2:* & npm run devstart"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
